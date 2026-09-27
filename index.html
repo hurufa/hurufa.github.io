@@ -1,0 +1,377 @@
+<!doctype html>
+<html lang="en">
+<head>
+<meta charset="utf-8">
+<meta name="viewport" content="width=device-width, initial-scale=1">
+<title>Rizky Aditya Nugroho</title>
+<meta name="description" content="Rizky Aditya Nugroho — Lecturer at Universitas NU Sidoarjo. Lectures, research and community service.">
+<link rel="preconnect" href="https://fonts.googleapis.com">
+<link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+<link href="https://fonts.googleapis.com/css2?family=Plus+Jakarta+Sans:wght@400;500;600;700;800&display=swap" rel="stylesheet">
+<style>
+  :root {
+    --yellow: #FFCB05;
+    --yellow-deep: #E6B400;
+    --yellow-soft: #FFF5CC;
+    --black: #111111;
+    --side-bg: #111111;
+    --side-ink: #F5F5F2;
+    --side-muted: #9A9A94;
+    --side-line: #262626;
+    --bg: #FAFAF7;
+    --surface: #FFFFFF;
+    --ink: #111111;
+    --muted: #5E5E58;
+    --border: #E8E6DF;
+    --placeholder: #F1F0EA;
+    --shadow: 0 1px 2px rgba(0,0,0,.05), 0 6px 20px rgba(0,0,0,.06);
+    --shadow-hover: 0 2px 6px rgba(0,0,0,.08), 0 18px 40px rgba(0,0,0,.12);
+    color-scheme: light;
+  }
+  @media (prefers-color-scheme: dark) {
+    :root:not([data-theme="light"]) {
+      --side-bg: #0A0A0A; --side-line: #222;
+      --bg: #141414; --surface: #1C1C1C; --ink: #F5F5F2; --muted: #A8A8A0;
+      --border: #2C2C2C; --placeholder: #232323; --yellow-soft: #3A3210;
+      --shadow: 0 1px 2px rgba(0,0,0,.4); --shadow-hover: 0 18px 40px rgba(0,0,0,.5);
+      color-scheme: dark;
+    }
+  }
+  :root[data-theme="dark"] {
+    --side-bg: #0A0A0A; --side-line: #222;
+    --bg: #141414; --surface: #1C1C1C; --ink: #F5F5F2; --muted: #A8A8A0;
+    --border: #2C2C2C; --placeholder: #232323; --yellow-soft: #3A3210;
+    --shadow: 0 1px 2px rgba(0,0,0,.4); --shadow-hover: 0 18px 40px rgba(0,0,0,.5);
+    color-scheme: dark;
+  }
+
+  * { box-sizing: border-box; margin: 0; padding: 0; }
+  html { -webkit-text-size-adjust: 100%; }
+  body {
+    font-family: "Plus Jakarta Sans", system-ui, -apple-system, "Segoe UI", sans-serif;
+    background: var(--bg); color: var(--ink); line-height: 1.55;
+  }
+  a { color: inherit; text-decoration: none; }
+  svg { display: block; }
+  button { font: inherit; }
+  :focus-visible { outline: 3px solid var(--yellow); outline-offset: 3px; }
+
+  .layout { display: grid; grid-template-columns: 320px minmax(0, 1fr); min-height: 100vh; }
+
+  /* ---------- Left panel ---------- */
+  .side {
+    position: sticky; top: 0; height: 100vh;
+    background: var(--side-bg); color: var(--side-ink);
+    display: flex; flex-direction: column;
+    padding: 40px 28px 24px;
+    border-right: 1px solid var(--side-line);
+  }
+  .avatar {
+    width: 148px; height: 148px; border-radius: 50%;
+    padding: 5px; background: var(--yellow);
+    box-shadow: 0 0 0 6px rgba(255, 203, 5, .15);
+  }
+  .avatar img, .avatar .initials {
+    width: 100%; height: 100%; border-radius: 50%;
+    border: 4px solid var(--side-bg); object-fit: cover;
+  }
+  .avatar .initials { display: grid; place-items: center; background: #222; color: var(--yellow); font-size: 44px; font-weight: 800; }
+  .name { margin-top: 24px; font-size: 26px; font-weight: 800; line-height: 1.2; letter-spacing: -.02em; }
+  .name span { color: var(--yellow); }
+  .tagline { margin-top: 8px; font-size: 15px; color: var(--side-muted); }
+
+  .nav { margin-top: 36px; display: flex; flex-direction: column; gap: 4px; }
+  .nav-item {
+    display: flex; align-items: center; gap: 12px;
+    padding: 11px 14px; border-radius: 12px;
+    font-size: 15px; font-weight: 600; color: var(--side-muted);
+    border: 0; background: none; text-align: left; width: 100%;
+  }
+  .nav-item.current { background: var(--yellow); color: var(--black); }
+  .nav-item[aria-disabled="true"] { cursor: default; }
+  .nav-item .soon {
+    margin-left: auto; font-size: 11px; font-weight: 600; letter-spacing: .04em; text-transform: uppercase;
+    color: #6A6A64;
+  }
+
+  .side-foot {
+    margin-top: auto; padding-top: 24px;
+    display: flex; align-items: center; justify-content: space-between; gap: 12px;
+    font-size: 12px; color: #6A6A64;
+  }
+  .theme-btn {
+    flex: none; width: 38px; height: 38px; border-radius: 10px; cursor: pointer;
+    border: 1px solid var(--side-line); background: #1A1A1A; color: var(--yellow);
+    display: grid; place-items: center; transition: background .2s;
+  }
+  .theme-btn:hover { background: #242424; }
+  .icon-sun { display: none; }
+  :root[data-theme="dark"] .icon-sun { display: block; }
+  :root[data-theme="dark"] .icon-moon { display: none; }
+  @media (prefers-color-scheme: dark) {
+    :root:not([data-theme="light"]) .icon-sun { display: block; }
+    :root:not([data-theme="light"]) .icon-moon { display: none; }
+  }
+
+  /* ---------- Right panel ---------- */
+  .content { padding: 48px clamp(20px, 4vw, 56px) 56px; }
+  .view { display: none; animation: rise .35s ease both; max-width: 1100px; }
+  .view.active { display: block; }
+  @keyframes rise { from { opacity: 0; transform: translateY(10px); } to { opacity: 1; transform: none; } }
+
+  .eyebrow {
+    display: inline-flex; align-items: center; gap: 8px;
+    font-size: 12px; font-weight: 700; letter-spacing: .12em; text-transform: uppercase; color: var(--muted);
+  }
+  .eyebrow::before { content: ""; width: 22px; height: 3px; border-radius: 2px; background: var(--yellow); }
+  .view-title { margin-top: 8px; font-size: clamp(26px, 3.4vw, 36px); font-weight: 800; letter-spacing: -.02em; line-height: 1.15; }
+  .view-sub { margin-top: 6px; color: var(--muted); font-size: 15px; }
+  .view-head { margin-bottom: 28px; }
+
+  .back {
+    display: inline-flex; align-items: center; gap: 6px; margin-bottom: 18px;
+    padding: 8px 14px 8px 10px; border-radius: 10px; cursor: pointer;
+    border: 1px solid var(--border); background: var(--surface); color: var(--ink);
+    font-size: 14px; font-weight: 600; transition: border-color .2s, background .2s;
+  }
+  .back:hover { border-color: var(--yellow); background: var(--yellow-soft); }
+
+  /* Tiles */
+  .tiles { display: grid; gap: 22px; grid-template-columns: repeat(2, minmax(0, 1fr)); }
+  .tiles.courses { grid-template-columns: repeat(auto-fill, minmax(250px, 1fr)); gap: 20px; }
+
+  .tile {
+    position: relative; display: flex; flex-direction: column;
+    border-radius: 22px; overflow: hidden;
+    background: var(--surface); border: 1px solid var(--border);
+    box-shadow: var(--shadow);
+    transition: transform .25s ease, box-shadow .25s ease, border-color .25s ease;
+  }
+  .tile.clickable { cursor: pointer; }
+  .tile.clickable:hover { transform: translateY(-5px); box-shadow: var(--shadow-hover); border-color: var(--yellow); }
+  .tile.clickable:hover .go { background: var(--black); color: var(--yellow); transform: rotate(-45deg); }
+  .tile.clickable:hover .media img { transform: scale(1.04); }
+
+  .media {
+    position: relative; aspect-ratio: 16 / 10; overflow: hidden;
+    display: grid; place-items: center;
+    background: var(--placeholder); color: var(--muted);
+  }
+  .tiles.courses .media { aspect-ratio: 16 / 9; }
+  .tile.clickable .media {
+    background:
+      repeating-linear-gradient(135deg, rgba(0,0,0,.05) 0 14px, transparent 14px 28px),
+      var(--yellow);
+    color: var(--black);
+  }
+  .media img { position: absolute; inset: 0; width: 100%; height: 100%; object-fit: cover; transition: transform .5s ease; }
+  .tile.disabled .media img { filter: grayscale(1); opacity: .55; }
+
+  .tile-body { display: flex; align-items: center; gap: 14px; padding: 18px 20px 20px; }
+  .tile-text { flex: 1; min-width: 0; }
+  .tile-title { font-size: 20px; font-weight: 800; letter-spacing: -.01em; line-height: 1.25; }
+  .tiles.courses .tile-title { font-size: 17px; font-weight: 700; }
+  .tile-desc { margin-top: 3px; font-size: 14px; color: var(--muted); }
+  .go {
+    flex: none; width: 44px; height: 44px; border-radius: 50%;
+    display: grid; place-items: center;
+    background: var(--yellow); color: var(--black);
+    transition: transform .3s ease, background .3s, color .3s;
+  }
+  .tiles.courses .go { width: 38px; height: 38px; }
+
+  .tile.disabled { cursor: not-allowed; box-shadow: none; }
+  .tile.disabled .tile-title { color: var(--muted); }
+  .chip {
+    position: absolute; top: 14px; left: 14px; z-index: 1;
+    padding: 5px 11px; border-radius: 999px;
+    font-size: 11px; font-weight: 700; letter-spacing: .06em; text-transform: uppercase;
+  }
+  .chip.soon { background: var(--surface); color: var(--muted); border: 1px solid var(--border); }
+  .chip.live { background: var(--black); color: var(--yellow); }
+
+  /* ---------- Responsive ---------- */
+  @media (max-width: 900px) {
+    .layout { grid-template-columns: 1fr; }
+    .side { position: static; height: auto; padding: 32px 20px 20px; align-items: center; text-align: center; border-right: 0; }
+    .avatar { width: 120px; height: 120px; }
+    .name { font-size: 24px; margin-top: 18px; }
+    .nav { flex-direction: row; justify-content: center; flex-wrap: wrap; gap: 6px; margin-top: 22px; }
+    .nav-item { width: auto; padding: 8px 14px; font-size: 14px; }
+    .nav-item .soon, .nav-item svg { display: none; }
+    .side-foot { position: absolute; top: 16px; right: 16px; margin: 0; padding: 0; }
+    .side-foot small { display: none; }
+    .side { position: relative; }
+    .content { padding: 32px 16px 40px; }
+  }
+  @media (max-width: 620px) { .tiles { grid-template-columns: 1fr; } }
+  @media (prefers-reduced-motion: reduce) { *, *::before, *::after { animation: none !important; transition: none !important; } }
+</style>
+</head>
+<body>
+<div class="layout">
+
+  <!-- ================= LEFT PANEL ================= -->
+  <aside class="side">
+    <div class="avatar">
+      <img src="assets/profile.jpg" alt="Rizky Aditya Nugroho"
+           onerror="this.replaceWith(Object.assign(document.createElement('div'),{className:'initials',textContent:'RN'}))">
+    </div>
+    <h1 class="name">Rizky Aditya<br>Nugroho<span>.</span></h1>
+    <p class="tagline">Lecturer at Universitas NU Sidoarjo</p>
+
+    <nav class="nav" aria-label="Main menu" id="mainNav"></nav>
+
+    <div class="side-foot">
+      <small>© <span id="year"></span> Rizky Aditya Nugroho</small>
+      <button class="theme-btn" id="themeBtn" type="button" aria-label="Toggle light/dark mode" title="Toggle light/dark mode">
+        <svg class="icon-moon" width="18" height="18" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><path d="M21 12.8A9 9 0 1 1 11.2 3a7 7 0 0 0 9.8 9.8z"/></svg>
+        <svg class="icon-sun" width="18" height="18" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><circle cx="12" cy="12" r="4"/><path d="M12 2v2M12 20v2M4.9 4.9l1.4 1.4M17.7 17.7l1.4 1.4M2 12h2M20 12h2M4.9 19.1l1.4-1.4M17.7 6.3l1.4-1.4"/></svg>
+      </button>
+    </div>
+  </aside>
+
+  <!-- ================= RIGHT PANEL ================= -->
+  <main class="content">
+    <section class="view" id="view-home" aria-labelledby="homeTitle">
+      <div class="view-head">
+        <div class="eyebrow">Welcome</div>
+        <h2 class="view-title" id="homeTitle">Explore my work</h2>
+      </div>
+      <div class="tiles" id="menuTiles"></div>
+    </section>
+
+    <section class="view" id="view-lectures" aria-labelledby="lecturesTitle">
+      <button class="back" type="button" id="backBtn">
+        <svg width="18" height="18" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.2" stroke-linecap="round" stroke-linejoin="round"><path d="M15 18l-6-6 6-6"/></svg>
+        Back
+      </button>
+      <div class="view-head">
+        <div class="eyebrow">Odd semester 2026/2027</div>
+        <h2 class="view-title" id="lecturesTitle">Lectures</h2>
+        <p class="view-sub">Course materials — 14 meetings per course.</p>
+      </div>
+      <div class="tiles courses" id="courseTiles"></div>
+    </section>
+  </main>
+</div>
+
+<script>
+  /* =====================================================================
+     EDIT HERE
+     image : path to a picture for the tile, e.g. "assets/tiles/lectures.jpg"
+             (landscape, about 1200×750 px). Leave "" to show the icon.
+     ===================================================================== */
+
+  /* Left menu. Set href (e.g. "about.html") and active: true when a page is ready. */
+  const NAV = [
+    { label: "Home",    icon: "home",   href: "#",  active: true,  current: true },
+    { label: "About",   icon: "user",   href: "",   active: false },
+    { label: "Resume",  icon: "file",   href: "",   active: false },
+    { label: "Contact", icon: "mail",   href: "",   active: false },
+  ];
+
+  /* Big tiles on the right. action "lectures" opens the course list; null = coming soon. */
+  const MENU = [
+    { title: "Lectures",          text: "Course materials I teach",       icon: "book",  image: "", action: "lectures" },
+    { title: "Research",          text: "Publications & ongoing work",    icon: "flask", image: "", action: null },
+    { title: "Community Service", text: "Community engagement",           icon: "hands", image: "", action: null },
+    { title: "Others",            text: "More activities & resources",    icon: "grid",  image: "", action: null },
+  ];
+
+  /* Courses. url = address of each course's GitHub Pages site; ready: true = clickable. */
+  const COURSES = [
+    { name: "Communication Skill",                   url: "/communication-skill/",               ready: true,  icon: "chat",   image: "" },
+    { name: "Manajemen Proyek Sistem Informasi",     url: "/manajemen-proyek-si/",               ready: true,  icon: "kanban", image: "" },
+    { name: "Transformasi Digital",                  url: "/transformasi-digital/",              ready: true,  icon: "spark",  image: "" },
+    { name: "Kepemimpinan dan Manajemen Organisasi", url: "/kepemimpinan-manajemen-organisasi/", ready: true,  icon: "people", image: "" },
+    { name: "Data Warehouse",                        url: "/data-warehouse/",                    ready: false, icon: "db",     image: "" },
+    { name: "Metode Peramalan",                      url: "/metode-peramalan/",                  ready: false, icon: "trend",  image: "" },
+  ];
+
+  /* ---------------------------------------------------------------------- */
+  const ICONS = {
+    home:   '<path d="M3 10.5 12 3l9 7.5V20a1 1 0 0 1-1 1h-5v-6H9v6H4a1 1 0 0 1-1-1z"/>',
+    user:   '<circle cx="12" cy="8" r="4"/><path d="M4 21a8 8 0 0 1 16 0"/>',
+    file:   '<path d="M14 3H6a2 2 0 0 0-2 2v14a2 2 0 0 0 2 2h12a2 2 0 0 0 2-2V9z"/><path d="M14 3v6h6M8 13h8M8 17h5"/>',
+    mail:   '<rect x="3" y="5" width="18" height="14" rx="2"/><path d="m3 7 9 6 9-6"/>',
+    book:   '<path d="M4 19.5A2.5 2.5 0 0 1 6.5 17H20V3H6.5A2.5 2.5 0 0 0 4 5.5v14z"/><path d="M4 19.5A2.5 2.5 0 0 0 6.5 22H20v-5"/><path d="M9 7h7M9 11h5"/>',
+    flask:  '<path d="M9 3h6M10 3v6L4.5 18.5A2 2 0 0 0 6.2 21.5h11.6a2 2 0 0 0 1.7-3L14 9V3"/><path d="M7.5 15h9"/>',
+    hands:  '<path d="M17 21v-2a4 4 0 0 0-4-4H7a4 4 0 0 0-4 4v2"/><circle cx="10" cy="7" r="4"/><path d="M21 21v-2a4 4 0 0 0-3-3.9M16 3.1a4 4 0 0 1 0 7.8"/>',
+    grid:   '<rect x="3" y="3" width="7" height="7" rx="1.5"/><rect x="14" y="3" width="7" height="7" rx="1.5"/><rect x="3" y="14" width="7" height="7" rx="1.5"/><rect x="14" y="14" width="7" height="7" rx="1.5"/>',
+    chat:   '<path d="M21 15a2 2 0 0 1-2 2H7l-4 4V5a2 2 0 0 1 2-2h14a2 2 0 0 1 2 2z"/><path d="M8 9h8M8 13h5"/>',
+    kanban: '<rect x="3" y="3" width="18" height="18" rx="2"/><path d="M8 7v7M12 7v4M16 7v9"/>',
+    spark:  '<path d="M12 3l1.9 5.1L19 10l-5.1 1.9L12 17l-1.9-5.1L5 10l5.1-1.9z"/><path d="M19 17l.8 2.2L22 20l-2.2.8L19 23l-.8-2.2L16 20l2.2-.8z"/>',
+    people: '<circle cx="12" cy="6" r="3"/><path d="M6 21v-2a6 6 0 0 1 12 0v2"/><circle cx="4.5" cy="10" r="2"/><circle cx="19.5" cy="10" r="2"/>',
+    db:     '<ellipse cx="12" cy="5" rx="8" ry="3"/><path d="M4 5v14c0 1.7 3.6 3 8 3s8-1.3 8-3V5"/><path d="M4 12c0 1.7 3.6 3 8 3s8-1.3 8-3"/>',
+    trend:  '<path d="M3 3v18h18"/><path d="M7 15l4-4 3 3 6-6"/><path d="M16 8h4v4"/>',
+  };
+  const svg = (n, s = 24, w = 2) =>
+    `<svg width="${s}" height="${s}" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="${w}" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true">${ICONS[n]}</svg>`;
+  const GO = '<span class="go"><svg width="20" height="20" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.4" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true"><path d="M5 12h14M13 6l6 6-6 6"/></svg></span>';
+
+  function tile({ title, text, icon, image, href, clickable, big, chip }) {
+    const iconSize = big ? 72 : 52;
+    const inner = `
+      <div class="media">
+        ${chip || ""}
+        ${svg(icon, iconSize, 1.6)}
+        ${image ? `<img src="${image}" alt="" loading="lazy" onerror="this.remove()">` : ""}
+      </div>
+      <div class="tile-body">
+        <div class="tile-text">
+          <div class="tile-title">${title}</div>
+          ${text ? `<div class="tile-desc">${text}</div>` : ""}
+        </div>
+        ${clickable ? GO : ""}
+      </div>`;
+    return clickable
+      ? `<a class="tile clickable" href="${href}">${inner}</a>`
+      : `<div class="tile disabled" aria-disabled="true">${inner}</div>`;
+  }
+
+  document.getElementById("mainNav").innerHTML = NAV.map(n => {
+    const cls = "nav-item" + (n.current ? " current" : "");
+    const body = `${svg(n.icon, 18)}<span>${n.label}</span>${n.active ? "" : '<span class="soon">Soon</span>'}`;
+    return n.active
+      ? `<a class="${cls}" href="${n.href}" ${n.current ? 'aria-current="page"' : ""}>${body}</a>`
+      : `<span class="${cls}" aria-disabled="true" title="Coming soon">${body}</span>`;
+  }).join("");
+
+  document.getElementById("menuTiles").innerHTML = MENU.map(m => tile({
+    title: m.title, text: m.text, icon: m.icon, image: m.image, big: true,
+    href: "#" + m.action, clickable: !!m.action,
+    chip: m.action ? "" : '<span class="chip soon">Coming soon</span>',
+  })).join("");
+
+  document.getElementById("courseTiles").innerHTML = COURSES.map(c => tile({
+    title: c.name, icon: c.icon, image: c.image, href: c.url, clickable: c.ready,
+    chip: c.ready ? '<span class="chip live">Available</span>' : '<span class="chip soon">Coming soon</span>',
+  })).join("");
+
+  /* Hash router: #lectures shows the course list, anything else the home tiles. */
+  function route() {
+    const lectures = location.hash === "#lectures";
+    document.getElementById("view-home").classList.toggle("active", !lectures);
+    document.getElementById("view-lectures").classList.toggle("active", lectures);
+  }
+  window.addEventListener("hashchange", () => { route(); window.scrollTo({ top: 0 }); });
+  route();
+  document.getElementById("backBtn").addEventListener("click", () => {
+    history.pushState("", document.title, location.pathname + location.search);
+    route();
+  });
+
+  /* Theme toggle */
+  const root = document.documentElement;
+  try { const t = localStorage.getItem("theme"); if (t) root.dataset.theme = t; } catch (e) {}
+  document.getElementById("themeBtn").addEventListener("click", () => {
+    const dark = root.dataset.theme ? root.dataset.theme === "dark" : matchMedia("(prefers-color-scheme: dark)").matches;
+    root.dataset.theme = dark ? "light" : "dark";
+    try { localStorage.setItem("theme", root.dataset.theme); } catch (e) {}
+  });
+
+  document.getElementById("year").textContent = new Date().getFullYear();
+</script>
+</body>
+</html>
