@@ -203,3 +203,18 @@ $('#gbody').innerHTML = GREEK.map(g => '<tr><td style="font-size:1.25rem;font-fa
     b.addEventListener('click', () => { cur = id; $$('button.chip', box).forEach(x => x.setAttribute('aria-pressed', x===b)); $$('.pcard', grid).forEach(c => { c.hidden = !(cur==='ALL' || c.dataset.p.split(' ').includes(cur)); }); });
     box.appendChild(b); });
 })();
+
+
+/* ---------- tombol kembali ke atas ---------- */
+(function(){
+  const b = $('#toTop'); if(!b) return;
+  const reduce = matchMedia('(prefers-reduced-motion: reduce)');
+  let ticking = false;
+  function update(){ b.hidden = window.scrollY < 600; ticking = false; }
+  window.addEventListener('scroll', () => { if(!ticking){ ticking = true; requestAnimationFrame(update); } }, {passive:true});
+  b.addEventListener('click', () => {
+    window.scrollTo({ top:0, behavior: reduce.matches ? 'auto' : 'smooth' });
+    const first = $('.home-link') || $('main'); if(first && first.focus){ first.setAttribute('tabindex','-1'); first.focus({preventScroll:true}); }
+  });
+  update();
+})();

@@ -374,3 +374,14 @@ button.chip:hover{ border-color:var(--accent); background:var(--accent-soft); }
 .ttbl td:first-child{ font-weight:600; width:9.5rem; }
 .ttbl td:nth-child(5), .ttbl td:nth-child(6){ font-size:0.9375rem; }
 .ttbl .chip{ margin-top:0.25rem; font-weight:400; }
+
+/* ---------- tombol kembali ke atas ---------- */
+.to-top{
+  position:fixed; right:max(1rem,env(safe-area-inset-right)); bottom:max(1rem,env(safe-area-inset-bottom)); z-index:25;
+  width:48px; height:48px; display:inline-flex; align-items:center; justify-content:center; cursor:pointer;
+  background:var(--accent); color:var(--on-accent); border:2px solid var(--on-accent); border-radius:var(--r-md);
+  box-shadow:0 2px 0 var(--on-accent), 0 6px 18px rgba(0,0,0,0.18);
+}
+.to-top:hover{ background:var(--accent-text); color:var(--surface); border-color:var(--surface); }
+.to-top:active{ transform:translateY(1px); }
+.to-top svg{ min-width:0; width:20px; height:20px; }
