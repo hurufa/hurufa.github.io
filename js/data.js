@@ -33,5 +33,5 @@ const COURSES = [
 
 /* Items shown under "Others". url = page address; ready: true = clickable. */
 const OTHERS = [
-  { name: "Atlas Komputasi & AI", text: "Disiplin komputasi, area riset, ML & DL, metodologi riset, dan notasi matematis", url: "/atlas/", ready: true, icon: "map", image: "" },
+  { name: "Computing & AI Atlas", text: "Computing disciplines, research areas, ML & DL, research methods, and math notation", url: "/atlas/", ready: true, icon: "map", image: "" },
 ];
