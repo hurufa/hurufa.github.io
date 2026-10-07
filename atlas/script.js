@@ -97,7 +97,7 @@ document.addEventListener('keydown', e => { if(e.key==='Escape') hideTip(); });
   function run(){
     const q = inp.value.trim().toLowerCase(); let n = 0;
     topics.forEach(t => { const ok = !q || t.textContent.toLowerCase().includes(q); t.hidden = !ok; if(ok && q) n++; });
-    areas.forEach(a => { const vis = $$('.topic', a).some(t => !t.hidden); a.hidden = !vis; if(q) a.open = vis; });
+    areas.forEach(a => { const vis = $$('.topic', a).some(t => !t.hidden); a.hidden = !vis; a.open = q ? vis : false; });
     $$('.field').forEach(f => { f.hidden = !!q && !$$('.topic', f).some(t => !t.hidden); });
     cnt.textContent = q ? n + ' topik cocok' : topics.length + ' topik';
   }
