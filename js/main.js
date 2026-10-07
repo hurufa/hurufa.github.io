@@ -15,6 +15,7 @@ const ICONS = {
   people: '<circle cx="12" cy="6" r="3"/><path d="M6 21v-2a6 6 0 0 1 12 0v2"/><circle cx="4.5" cy="10" r="2"/><circle cx="19.5" cy="10" r="2"/>',
   db:     '<ellipse cx="12" cy="5" rx="8" ry="3"/><path d="M4 5v14c0 1.7 3.6 3 8 3s8-1.3 8-3V5"/><path d="M4 12c0 1.7 3.6 3 8 3s8-1.3 8-3"/>',
   trend:  '<path d="M3 3v18h18"/><path d="M7 15l4-4 3 3 6-6"/><path d="M16 8h4v4"/>',
+  map:    '<path d="M9 3 3 5.5v15.5l6-2.5 6 2.5 6-2.5V3l-6 2.5z"/><path d="M9 3v15.5M15 5.5V21"/>',
 };
 const svg = (n, s = 24, w = 2) =>
   `<svg width="${s}" height="${s}" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="${w}" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true">${ICONS[n]}</svg>`;
@@ -59,18 +60,25 @@ document.getElementById("courseTiles").innerHTML = COURSES.map(c => tile({
   chip: c.ready ? '<span class="chip live">Available</span>' : '<span class="chip soon">Coming soon</span>',
 })).join("");
 
-/* Hash router: #lectures shows the course list, anything else the home tiles. */
+document.getElementById("othersTiles").innerHTML = OTHERS.map(o => tile({
+  title: o.name, text: o.text, icon: o.icon, image: o.image, href: o.url, clickable: o.ready,
+  chip: o.ready ? '<span class="chip live">Available</span>' : '<span class="chip soon">Coming soon</span>',
+})).join("");
+
+/* Hash router: #lectures and #others show their lists, anything else the home tiles. */
+const SUBVIEWS = ["lectures", "others"];
 function route() {
-  const lectures = location.hash === "#lectures";
-  document.getElementById("view-home").classList.toggle("active", !lectures);
-  document.getElementById("view-lectures").classList.toggle("active", lectures);
+  const v = location.hash.slice(1);
+  const sub = SUBVIEWS.includes(v) ? v : null;
+  document.getElementById("view-home").classList.toggle("active", !sub);
+  SUBVIEWS.forEach(n => document.getElementById("view-" + n).classList.toggle("active", n === sub));
 }
 window.addEventListener("hashchange", () => { route(); window.scrollTo({ top: 0 }); });
 route();
-document.getElementById("backBtn").addEventListener("click", () => {
+document.querySelectorAll(".back").forEach(b => b.addEventListener("click", () => {
   history.pushState("", document.title, location.pathname + location.search);
   route();
-});
+}));
 
 /* Theme toggle */
 const root = document.documentElement;

@@ -13,12 +13,12 @@ const NAV = [
   { label: "Contact", icon: "mail",   href: "",   active: false },
 ];
 
-/* Big tiles on the right. action "lectures" opens the course list; null = coming soon. */
+/* Big tiles on the right. action "lectures" / "others" opens a list; null = coming soon. */
 const MENU = [
   { title: "Lectures",          text: "Course materials I teach",       icon: "book",  image: "", action: "lectures" },
   { title: "Research",          text: "Publications & ongoing work",    icon: "flask", image: "", action: null },
   { title: "Community Service", text: "Community engagement",           icon: "hands", image: "", action: null },
-  { title: "Others",            text: "More activities & resources",    icon: "grid",  image: "", action: null },
+  { title: "Others",            text: "More activities & resources",    icon: "grid",  image: "", action: "others" },
 ];
 
 /* Courses. url = address of each course's GitHub Pages site; ready: true = clickable. */
@@ -29,4 +29,9 @@ const COURSES = [
   { name: "Kepemimpinan dan Manajemen Organisasi", url: "/kepemimpinan-manajemen-organisasi/", ready: true,  icon: "people", image: "" },
   { name: "Data Warehouse",                        url: "/data-warehouse/",                    ready: true,  icon: "db",     image: "" },
   { name: "Metode Peramalan",                      url: "/metode-peramalan/",                  ready: true,  icon: "trend",  image: "" },
+];
+
+/* Items shown under "Others". url = page address; ready: true = clickable. */
+const OTHERS = [
+  { name: "Atlas Komputasi & AI", text: "Disiplin komputasi, area riset, ML & DL, metodologi riset, dan notasi matematis", url: "/atlas/", ready: true, icon: "map", image: "" },
 ];
